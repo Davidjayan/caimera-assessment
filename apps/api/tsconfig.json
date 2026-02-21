@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "CommonJS",
+        "moduleResolution": "Node",
+        "lib": [
+            "ES2022"
+        ],
+        "outDir": "../../dist/apps/api",
+        "strict": true,
+        "skipLibCheck": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "declaration": false,
+        "composite": false,
+        "importHelpers": true,
+        "baseUrl": ".",
+        "paths": {
+            "@caimera-assess/entities": [
+                "../../libs/entities/src/index.ts"
+            ]
+        }
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "**/*.spec.ts",
+        "jest.config.ts",
+        "node_modules"
+    ]
+}

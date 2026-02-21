@@ -1,0 +1,10 @@
+{
+  "name": "@caimera-assess/api",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "serve": "ts-node -r tsconfig-paths/register src/main.ts",
+    "build": "tsc -p tsconfig.app.json",
+    "test": "jest --config jest.config.ts"
+  }
+}
