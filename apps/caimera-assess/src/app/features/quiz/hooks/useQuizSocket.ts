@@ -39,6 +39,7 @@ export function useQuizSocket() {
   const [gameOverMessage, setGameOverMessage] = useState<string | null>(null);
   const [playerCount, setPlayerCount] = useState(0);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
   const hasJoined = useRef(false);
 
   // --- Socket event listeners ---
@@ -57,7 +58,12 @@ export function useQuizSocket() {
       setPlayerCount(data.count);
     });
 
+    socket.on('generating_questions', () => {
+      setIsGenerating(true);
+    });
+
     socket.on('game_started', () => {
+      setIsGenerating(false);
       setPhase('waiting');
       setCorrectAnswer(null);
       setAnswerResult(null);
@@ -164,6 +170,7 @@ export function useQuizSocket() {
     gameOverMessage,
     playerCount,
     errorMessage,
+    isGenerating,
     hasJoined: hasJoined.current,
     joinGame,
     startGame,

@@ -2,6 +2,7 @@ import type { Server, Socket } from 'socket.io';
 import { QUESTION_TIMER_SECONDS } from './quiz.constants';
 import type { QuizQuestion } from './quiz.constants';
 import * as quizService from './quiz.service';
+import { generateQuestions } from './quiz.ai';
 import * as persistence from './quiz.persistence';
 
 interface GameState {
@@ -77,8 +78,20 @@ export function registerQuizGateway(io: Server): void {
         return;
       }
 
+      // Tell all clients that questions are being generated
+      quizNamespace.emit('generating_questions');
+
+      let generatedQuestions;
+      try {
+        generatedQuestions = await generateQuestions(10);
+      } catch (err) {
+        console.error('Failed to generate questions:', err);
+        socket.emit('error_message', { message: 'Failed to generate questions. Please make sure OPENROUTER_API_KEY is set.' });
+        return;
+      }
+
       await quizService.resetGame();
-      gameState.questions = quizService.pickQuestions();
+      gameState.questions = generatedQuestions;
       gameState.currentIndex = -1;
       gameState.gameId = `game_${Date.now()}`;
       gameState.isActive = true;

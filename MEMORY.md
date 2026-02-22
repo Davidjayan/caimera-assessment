@@ -19,4 +19,5 @@
 | 13 | Enhance GameOver message & Theme Color       | Updated frontend to capture and display custom `game_over` message (e.g., when all other players leave). Changed the primary theme color to `#1e2952` in both light and dark modes in `global.css`. |
 | 14 | Beaver & Black Theme Update | Updated `global.css` with a new Beaver (`#9F8170`) and Black color theme for both light and dark modes. |
 | 15 | Update Font & Header Opacity | Changed the app font from Inter to Figtree via `next/font/google`. Changed the main header background in `page.tsx` to `bg-primary/40` for a slight beaver color with 0.4 opacity. |
+| 16 | AI Question Generation (OpenRouter+Zod) | Added `ai`, `@openrouter/ai-sdk-provider` and `zod`. Created `quiz.ai.ts` to generate 10 unique maths questions via OpenRouter (`openai/gpt-3.5-turbo`) using Vercel AI SDK's `generateObject`. Added `generating_questions` socket event to show a loading spinner on `WaitingScreen` while AI generates the questions. |
 

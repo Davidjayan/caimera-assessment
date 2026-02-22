@@ -6,5 +6,10 @@
     "serve": "ts-node -r tsconfig-paths/register src/main.ts",
     "build": "tsc -p tsconfig.app.json",
     "test": "jest --config jest.config.ts"
+  },
+  "dependencies": {
+    "@openrouter/ai-sdk-provider": "^2.2.3",
+    "ai": "^6.0.97",
+    "zod": "^4.3.6"
   }
 }

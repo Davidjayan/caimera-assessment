@@ -69,6 +69,7 @@ export default function QuizPage() {
             <WaitingScreen
               playerCount={quiz.playerCount}
               errorMessage={quiz.errorMessage}
+              isGenerating={quiz.isGenerating}
               onStartGame={quiz.startGame}
             />
           )}
