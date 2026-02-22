@@ -4,18 +4,23 @@
 
 set -e
 
+# Optimize for low-memory environment (t3.micro - 1GB RAM)
+export NX_DAEMON=false
+export NODE_OPTIONS="--max_old_space_size=512"
+
 echo "Installing dependencies..."
 pnpm install
 
-echo "Building applications..."
-npx nx run-many -t build -p api caimera-assess
+echo "Building applications sequentially to save memory..."
+npx nx build api
+npx nx build caimera-assess
 
 echo "Starting applications with PM2..."
-# Start API (Node.js)
-pm2 start dist/apps/api/main.js --name "api"
+# Start API (Node.js) with strict memory bounds
+pm2 start dist/apps/api/main.js --name "api" --node-args="--max_old_space_size=256"
 
-# Start Frontend (Next.js)
-pm2 start "npx nx start caimera-assess" --name "caimera-assess"
+# Start Frontend (Next.js) with strict memory bounds
+pm2 start "npx nx start caimera-assess" --name "caimera-assess" --node-args="--max_old_space_size=256"
 
 echo "Saving PM2 configuration..."
 pm2 save
