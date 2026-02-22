@@ -7,6 +7,7 @@ set -e
 # Optimize for low-memory environment (t3.micro - 1GB RAM)
 export NX_DAEMON=false
 export NODE_OPTIONS="--max_old_space_size=512"
+export NODE_ENV="production"
 
 echo "Pulling latest changes from git..."
 git pull
