@@ -5,16 +5,24 @@
   "projectType": "application",
   "tags": ["type:api"],
   "targets": {
+    "dev": {
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "api:build",
+        "runBuildTargetDependencies": true
+      }
+    },
     "serve": {
       "executor": "@nx/js:node",
       "options": {
         "buildTarget": "api:build",
-        "runBuildTargetDependencies": false
+        "runBuildTargetDependencies": true
       }
     },
     "build": {
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
+      "dependsOn": ["^build"],
       "options": {
         "outputPath": "dist/apps/api",
         "main": "apps/api/src/main.ts",

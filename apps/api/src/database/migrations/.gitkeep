@@ -1,0 +1,7 @@
+// TypeORM migrations directory
+// Migration files will be generated here by the TypeORM CLI.
+//
+// Usage (from monorepo root):
+//   pnpm migration:generate <MigrationName>
+//   pnpm migration:run
+//   pnpm migration:revert
