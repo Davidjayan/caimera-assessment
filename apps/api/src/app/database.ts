@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
-import { User } from '../database/entities';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -11,7 +10,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME ?? 'caimera',
   synchronize: false,
   logging: process.env.NODE_ENV === 'development',
-  entities: [User],
+  entities: [__dirname + '/../database/entities/*{.ts,.js}'],
   migrations: [__dirname + '/../database/migrations/*{.ts,.js}'],
   subscribers: [],
 });
