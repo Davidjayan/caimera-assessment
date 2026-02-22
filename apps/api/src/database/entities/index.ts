@@ -1,2 +1,4 @@
+export { Answer } from './Answer';
 export { BaseEntityWithTimeStamp } from './BaseEntity';
-export { User } from './User';
+export { Question } from './Question';
+

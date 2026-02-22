@@ -1,6 +1,7 @@
 import { Server } from 'socket.io';
 import { createAdapter } from '@socket.io/redis-adapter';
 import { getRedisClient } from './redis';
+import { registerQuizGateway } from '../features/quiz/quiz.gateway';
 import type { Server as HttpServer } from 'http';
 
 export function createSocketServer(httpServer: HttpServer): Server {
@@ -23,6 +24,9 @@ export function createSocketServer(httpServer: HttpServer): Server {
       console.log(`🔌 Socket disconnected: ${socket.id}`);
     });
   });
+
+  // Register quiz namespace handlers
+  registerQuizGateway(io);
 
   return io;
 }
