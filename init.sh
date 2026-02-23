@@ -18,7 +18,7 @@ npx nx build caimera-assess
 
 echo "Starting applications with PM2..."
 # Start API (Node.js) with strict memory bounds
-pm2 start dist/apps/api/main.js --name "api" --node-args="--max_old_space_size=256"
+pm2 start dist/apps/api/src/main.js --name "api" --node-args="--max_old_space_size=256"
 
 # Start Frontend (Next.js) with strict memory bounds
 pm2 start "npx nx start caimera-assess" --name "caimera-assess" --node-args="--max_old_space_size=256"
