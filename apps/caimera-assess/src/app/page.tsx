@@ -79,6 +79,7 @@ export default function QuizPage() {
             <GameOverScreen
               leaderboard={quiz.leaderboard}
               message={quiz.gameOverMessage}
+              isGenerating={quiz.isGenerating}
               onPlayAgain={quiz.startGame}
             />
           )}
